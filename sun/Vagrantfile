@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+###### k8s NODE 1 #####
+
+  config.vm.define "k8s-node1" do |cfg|
+    cfg.vm.box = "generic/centos7"
+    cfg.vm.host_name = "k8s-node1"
+    cfg.vm.network :public_network, :dev => "vswitch01", :ovs => true
+    cfg.vm.network "private_network", ip: "172.16.1.11"
+    cfg.vm.network "forwarded_port", guest: 22, host: 60011, auto_correct: true, id: "ssh"
+    cfg.vm.provision "shell", inline: "mkdir /root/.ssh",privileged: true
+    cfg.vm.provision "file", source: "authorized_keys", destination: "authorized_keys"
+    cfg.vm.provision "shell", inline: "cat authorized_keys >> /root/.ssh/authorized_keys"
+    cfg.vm.provider :libvirt do |resource|
+      resource.memory = 1024
+      resource.cpus = 1
+      end
+    end
+
+###### k8s-master #######
+
+  config.vm.define "k8s-master" do |cfg|
+    cfg.vm.box = "generic/centos7"
+    cfg.vm.host_name = "k8s-master"
+    cfg.vm.network :public_network, :dev => "vswitch01", :ovs => true
+    cfg.vm.network "private_network", ip: "172.16.1.10"
+    cfg.vm.network "forwarded_port", guest: 22, host: 60010, auto_correct: true, id: 'ssh'
+    cfg.vm.provision "shell", inline: "mkdir /root/.ssh",privileged: true
+    cfg.vm.provision "file", source: "authorized_keys", destination: "authorized_keys"
+    cfg.vm.provision "shell", inline: "cat authorized_keys >> /root/.ssh/authorized_keys"
+    cfg.vm.provider :libvirt do |resource|
+      resource.memory = 2048
+      resource.cpus = 2
+    end
+  end
+end
+
