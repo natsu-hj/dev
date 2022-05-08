@@ -8,7 +8,7 @@
     - name: main image FOR MOON
       docker_image:
         build:
-          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile-main
+          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile1
         name: 211.183.3.199:5000/main-moon
         tag: 1.0
         push: yes
@@ -17,17 +17,17 @@
     - name: shop image FOR MOON
       docker_image:
         build:
-          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile-shop
+          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile2
         name: 211.183.3.199:5000/shop-moon
         tag: 1.0
         push: yes
         source: build
 
-    - name: main image FOR MOON
+    - name: finance image FOR MOON
       docker_image:
         build:
-          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile-webtoon
-        name: 211.183.3.199:5000/main-moon
+          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/Dockerfile3
+        name: 211.183.3.199:5000/finance-moon
         tag: 1.0
         push: yes
         source: build
