@@ -14,20 +14,20 @@
         
     - name: MAIN deploy and svc for MOON
       k8s:
-      state: present
-      src: ./deploy-main-moon.yaml
+        state: present
+        src: ./deploy-main-moon.yaml
 
     - name: SHOP deploy and svc for MOON
       k8s:
-      state: present
-      src: ./deploy-shop-moon.yaml
+        state: present
+        src: ./deploy-shop-moon.yaml
 
     - name: FINANCE deploy and svc for MOON
       k8s:
-      state: present
-      src: ./deploy-finance-moon.yaml
+        state: present
+        src: ./deploy-finance-moon.yaml
 
     - name: Ingress for MOON
       k8s:
-      state: present
-      src: ./ingress-moon.yaml
+        state: present
+        src: ./ingress-moon.yaml
