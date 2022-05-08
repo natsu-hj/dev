@@ -15,19 +15,19 @@
     - name: MAIN deploy and svc for MOON
       k8s:
         state: present
-        src: /var/lib/jenkins/workspace/webhook-k8s/moon/web/deploy-main-moon.yaml
+        src: deploy-main-moon.yaml
 
     - name: SHOP deploy and svc for MOON
       k8s:
         state: present
-        src: /var/lib/jenkins/workspace/webhook-k8s/moon/web/deploy-shop-moon.yaml
+        src: deploy-shop-moon.yaml
 
     - name: FINANCE deploy and svc for MOON
       k8s:
         state: present
-        src: /var/lib/jenkins/workspace/webhook-k8s/moon/web/deploy-finance-moon.yaml
+        src: deploy-finance-moon.yaml
 
     - name: Ingress for MOON
       k8s:
         state: present
-        src: /var/lib/jenkins/workspace/webhook-k8s/moon/web/ingress-moon.yaml
+        src: ingress-moon.yaml
