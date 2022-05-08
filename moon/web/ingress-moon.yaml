@@ -1,0 +1,35 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-moon
+  namespace: moon
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-main-moon
+            port:
+              number: 80
+      - path: /shop
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-shop-moon
+            port:
+              number: 80
+      - path: /finance
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-finance-moon
+            port:
+              number: 80

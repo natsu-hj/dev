@@ -1,0 +1,45 @@
+---
+#main 디플로이 for moon
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-main-moon
+  namespace: moon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      company: moon
+      page: main
+  template:
+    metadata:
+      name: pod-main-moon
+      labels:
+        company: moon
+        page: main
+    spec:
+      containers:
+      - name: ctn-main-moon
+        image: 211.183.3.199:5000-main-moon:1.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 750m
+          requests:
+            cpu: 500m
+---
+#main 서비스 for moon
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-main-moon
+  namespace: moon
+spec:
+  ports:
+  - name: port-main-moon
+    targetPort: 80
+    port: 80
+  selector:
+    company: moon
+    page: main

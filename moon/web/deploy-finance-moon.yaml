@@ -1,0 +1,45 @@
+---
+#finance 디플로이 for moon
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-finance-moon
+  namespace: moon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      company: moon
+      page: finance
+  template:
+    metadata:
+      name: pod-finance-moon
+      labels:
+        company: moon
+        page: finance
+    spec:
+      containers:
+      - name: ctn-finance-moon
+        image: 211.183.3.199:5000-finance-moon:1.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 250m
+---
+#finance 서비스 for moon
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-finance-moon
+  namespace: moon
+spec:
+  ports:
+  - name: port-finance-moon
+    targetPort: 80
+    port: 80
+  selector:
+    company: moon
+    page: finance
