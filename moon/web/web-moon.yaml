@@ -26,7 +26,7 @@
     - name: finance image FOR MOON
       docker_image:
         build:
-          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/finanace
+          path: /var/lib/jenkins/workspace/webhook-k8s/moon/web/finance
         name: 211.183.3.199:5000/finance-moon
         tag: 1.0
         push: yes
