@@ -1,0 +1,33 @@
+---
+- name: Create Web Service for MOON
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: create a namespace for MOON
+      k8s:
+        name: moon
+        api_version: v1
+        kind: Namespace
+        state: present
+        
+    - name: MAIN deploy and svc for MOON
+      k8s:
+      state: present
+      src: ./deploy-main-moon.yaml
+
+    - name: SHOP deploy and svc for MOON
+      k8s:
+      state: present
+      src: ./deploy-shop-moon.yaml
+
+    - name: FINANCE deploy and svc for MOON
+      k8s:
+      state: present
+      src: ./deploy-finance-moon.yaml
+
+    - name: Ingress for MOON
+      k8s:
+      state: present
+      src: ./ingress-moon.yaml
