@@ -6,6 +6,7 @@ metadata:
   namespace: moon
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: "moon"
 
 spec:
   ingressClassName: nginx

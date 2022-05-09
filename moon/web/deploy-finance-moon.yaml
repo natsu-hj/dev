@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: ctn-finance-moon
-        image: 211.183.3.199:5000-finance-moon:1.0
+        image: 211.183.3.199:5000/finance-moon:1.0
         ports:
         - containerPort: 80
         resources:

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: ctn-main-moon
-        image: 211.183.3.199:5000-main-moon:1.0
+        image: 211.183.3.199:5000/main-moon:1.0
         ports:
         - containerPort: 80
         resources:
