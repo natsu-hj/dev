@@ -11,23 +11,43 @@
         api_version: v1
         kind: Namespace
         state: present
-        
+
+    - name: Copying file with playbook main page
+      copy:
+        src: deploy-main-moon.yaml
+        dest: /tmp/deploy-main-moon.yaml
+
+    - name: Copying file with playbook shop page
+      copy:
+        src: deploy-shop-moon.yaml
+        dest: /tmp/deploy-shop-moon.yaml
+
+    - name: Copying file with playbook finance page
+      copy:
+        src: deploy-finance-moon.yaml
+        dest: /tmp/deploy-finance-moon.yaml
+
+    - name: Copying file with playbook ingress
+      copy:
+        src: ingress-moon.yaml
+        dest: /tmp/ingress-moon.yaml
+
     - name: MAIN deploy and svc for MOON
       k8s:
         state: present
-        src: /web/deploy-main-moon.yaml
+        src: /tmp/deploy-main-moon.yaml
 
     - name: SHOP deploy and svc for MOON
       k8s:
         state: present
-        src: /web/deploy-shop-moon.yaml
+        src: /tmp/deploy-shop-moon.yaml
 
     - name: FINANCE deploy and svc for MOON
       k8s:
         state: present
-        src: /web/deploy-finance-moon.yaml
+        src: /tmp/deploy-finance-moon.yaml
 
     - name: Ingress for MOON
       k8s:
         state: present
-        src: /web/ingress-moon.yaml
+        src: /tmp/ingress-moon.yaml
