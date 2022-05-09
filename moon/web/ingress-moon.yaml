@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/ingress.class: "moon"
 
 spec:
-  ingressClassName: nginx
+  ingressClassName: moon
   rules:
   - http:
       paths:
